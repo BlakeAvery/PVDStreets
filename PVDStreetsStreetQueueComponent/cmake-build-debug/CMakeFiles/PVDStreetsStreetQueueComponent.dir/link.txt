@@ -1,3 +1,0 @@
-E:\CLion\bin\cmake\win\bin\cmake.exe -E remove -f CMakeFiles\PVDStreetsStreetQueueComponent.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\PVDStreetsStreetQueueComponent.dir/objects.a @CMakeFiles\PVDStreetsStreetQueueComponent.dir\objects1.rsp
-C:\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\PVDStreetsStreetQueueComponent.dir/objects.a -Wl,--no-whole-archive  -o PVDStreetsStreetQueueComponent.exe -Wl,--out-implib,libPVDStreetsStreetQueueComponent.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\PVDStreetsStreetQueueComponent.dir\linklibs.rsp
