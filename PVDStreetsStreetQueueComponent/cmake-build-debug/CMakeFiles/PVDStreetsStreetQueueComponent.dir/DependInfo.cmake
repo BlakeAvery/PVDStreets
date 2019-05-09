@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/Blake/CLionProjects/PVDStreetsStreetQueueComponent/main.c" "C:/Users/Blake/CLionProjects/PVDStreetsStreetQueueComponent/cmake-build-debug/CMakeFiles/PVDStreetsStreetQueueComponent.dir/main.c.obj"
+  "C:/Users/Blake/Documents/PVDStreets/PVDStreetsStreetQueueComponent/main.c" "C:/Users/Blake/Documents/PVDStreets/PVDStreetsStreetQueueComponent/cmake-build-debug/CMakeFiles/PVDStreetsStreetQueueComponent.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

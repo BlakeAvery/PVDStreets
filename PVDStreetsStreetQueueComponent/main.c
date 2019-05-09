@@ -2,17 +2,29 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct node_t { //defines the structure of a node in the list
-    char name[25];
-    int age;
-    struct node_t *next;
-}node_t;
+typedef struct car_t { //defines the structure of a node in the list
+    long id; //identification number of car
+    char turn_dir; //0 for straight, 1 for left, 2 for right. Determined at end of queue.
+    long time_in_system; //increments on engine loop. Counts how long car is in simulation.
+    //to fill in more
+    struct car_t *next;
+}car_t;
 
-struct header { //defines structure of the header of the list
-    node_t *fptr;
-    int count;
-    node_t *rptr;
-}header;
+typedef struct street_t { //defines structure of the street header
+    car_t *fptr;
+    int count; //Represents max amount of cars the street can hold
+    int traffic_light_status; //Status of traffic light at end of this queue
+    struct street_t *street_str; //Pointer to next street queue that this street leads to straight
+    struct street_t *street_left; //left
+    struct street_t *street_right; //right - If one of these three are null we can't go this direction
+    //to fill in more
+    car_t *rptr;
+}street_t;
+
+typedef struct head_t { //linked list to hold all cars in system
+    long count;
+    car_t *fptr;
+};
 
 int new_node();
 int output_list();

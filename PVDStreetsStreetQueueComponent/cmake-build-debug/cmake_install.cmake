@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Blake/CLionProjects/PVDStreetsStreetQueueComponent
+# Install script for directory: C:/Users/Blake/Documents/PVDStreets/PVDStreetsStreetQueueComponent
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Blake/CLionProjects/PVDStreetsStreetQueueComponent/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Blake/Documents/PVDStreets/PVDStreetsStreetQueueComponent/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
