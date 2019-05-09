@@ -6,7 +6,7 @@ typedef struct car_t { //defines the structure of a node in the list
     long id; //identification number of car
     char turn_dir; //0 for straight, 1 for left, 2 for right. Determined at end of queue.
     long time_in_system; //increments on engine loop. Counts how long car is in simulation.
-    //to fill in more
+    int street_tracker[20]; //counts the
     struct car_t *next;
 }car_t;
 
