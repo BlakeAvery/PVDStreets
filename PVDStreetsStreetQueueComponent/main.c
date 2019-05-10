@@ -6,14 +6,18 @@ typedef struct car_t { //defines the structure of a node in the list
     long id; //identification number of car
     char turn_dir; //0 for straight, 1 for left, 2 for right. Determined at end of queue.
     long time_in_system; //increments on engine loop. Counts how long car is in simulation.
-    int street_tracker[20]; //counts the
+    int street_tracker[20];
     struct car_t *next;
 }car_t;
 
 typedef struct street_t { //defines structure of the street header
     car_t *fptr;
+    char name[30];
     int count; //Represents max amount of cars the street can hold
     int traffic_light_status; //Status of traffic light at end of this queue
+    int timer;
+    int arrival_rate;
+    int exit_rate;
     struct street_t *street_str; //Pointer to next street queue that this street leads to straight
     struct street_t *street_left; //left
     struct street_t *street_right; //right - If one of these three are null we can't go this direction
