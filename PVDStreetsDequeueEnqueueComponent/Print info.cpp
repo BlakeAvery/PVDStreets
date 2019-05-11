@@ -44,12 +44,32 @@ ptime(int time){
 	return 0;
 }
 
+int prate(int time,int arrival,int exit){
+	
+	if(time==0){
+		printf("  Arrival Rate:- cars/sec");
+		printf("  Exit Rate:- cars/sec");
+	}
+	
+	else{
+		float rarrival;
+		rarrival=arrival/time;
+		float rexit;
+		rexit=exit/time;
+		
+		printf("  Arrival Rate:%.2f/sec",rarrival);
+		printf("  Exit Rate:%.2f/sec",rexit);
+	}
+	
+	return 0;
+}
+
 
 pcars(st_s street[]){
 	int i;
 	int N=2;//#of streets
 	for(i=1;i<=N;i++){
-		printf("\n\n%s\n",street[i].name);
+		printf("\n%s\n",street[i].name);
 		//define new, current, and previous pointers.
 		car_s *cptr;
 		car_s *pptr;
@@ -59,7 +79,7 @@ pcars(st_s street[]){
 		pptr=street[i].fptr;
 		while(cptr!=NULL){//scan all nodes until reach the final node and print each node
 				
-			printf("<-%d",cptr->cnum);//print car number
+			printf("←%d",cptr->cnum);//print car number
 			pptr=cptr;//the previous pointer keep the address pointed by the current pointer 
 			cptr=cptr->next_s;//the current pointer points the next node
 			}
@@ -67,10 +87,51 @@ pcars(st_s street[]){
 	return 0;
 }
 
+
+pcars(st_s street[],char system[]){
+	int i;
+	int N=2;//#of streets
+	printf("\n\n%s\n",system);
+	for(i=1;i<=N;i++){
+		
+		//define new, current, and previous pointers.
+		car_s *cptr;
+		car_s *pptr;
+		
+		//set pointer at the header
+		cptr=street[i].fptr;
+		pptr=street[i].fptr;
+		//printf("\n");
+		while(cptr!=NULL){//scan all nodes until reach the final node and print each node
+				
+			printf("%d ",cptr->cnum);//print car number
+			pptr=cptr;//the previous pointer keep the address pointed by the current pointer 
+			cptr=cptr->next_s;//the current pointer points the next node
+			}
+	}
+	return 0;
+}
+
+int pbar(st_s street[]){
+	int i;
+	int N=2;//#of streets
+	for(i=1;i<=N;i++){
+		
+		printf("\n\n%-15s|",street[i].name);
+		int j;
+		for(j=0;j<street[i].cars;j++){
+			printf("]");
+		}
+		printf(" %d",street[i].cars);
+	}
+	return 0;
+}
+
 inist(st_s street[],int st){
 	
+	street[st].cars=0;
 	int cnum;
-	char eof[4];//4B for age
+	char eof[4];//check char for eof
 	FILE * pFile;//file pointer
 	pFile = fopen ("Cars.txt","r");//open file "Cars.txt" and "r"(read)
 	
@@ -169,7 +230,11 @@ int main(){
 	while(runtime>=time){
 	system("cls");
 	ptime(time);
-	pcars(Street);//print all cars on street2
+	prate(time,40,50);
+	
+	char system[]="On streets";
+	pcars(Street,system);//print all cars on street2
+	pbar(Street);
 	time++;
 	trans(Street,1,2);
 	//trans(Street,2,1);
