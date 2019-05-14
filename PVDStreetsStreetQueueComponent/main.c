@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+//This code will not compile on its own! The tons of errors are intentional!
+
 typedef struct car_t { //defines the structure of a node in the list
     long id; //identification number of car
     char turn_dir; //0 for straight, 1 for left, 2 for right. Determined at end of queue.
