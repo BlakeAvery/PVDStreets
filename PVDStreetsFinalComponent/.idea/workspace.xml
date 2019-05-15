@@ -12,7 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01e6073a-af29-4d49-8d44-ace1b11d42ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -36,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
+            <state relative-caret-position="290">
+              <caret line="22" column="40" lean-forward="true" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="63" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -51,7 +50,30 @@
     <findStrings>
       <find>street</find>
       <find>street_name</find>
+      <find>pine</find>
+      <find>empire2</find>
+      <find>pine1</find>
       <find>pine3</find>
+      <find>pine4</find>
+      <find>pine2</find>
+      <find>page1</find>
+      <find>dorrance1</find>
+      <find>dorrance2</find>
+      <find>dorrance3</find>
+      <find>dorrance5</find>
+      <find>matthewson1</find>
+      <find>westminister</find>
+      <find>westminister4</find>
+      <find>westminister1</find>
+      <find>westminister2</find>
+      <find>weybosset8</find>
+      <find>weybosset1</find>
+      <find>weybosset2</find>
+      <find>weybosset3</find>
+      <find>weybosset4</find>
+      <find>weybosset5</find>
+      <find>weybosset9</find>
+      <find>weybosset10</find>
     </findStrings>
     <replaceStrings>
       <replace>name</replace>
@@ -119,20 +141,19 @@
       <option name="presentableId" value="Default" />
       <updated>1557867794543</updated>
       <workItem from="1557867795750" duration="5715000" />
-      <workItem from="1557940194306" duration="9461000" />
+      <workItem from="1557940194306" duration="15350000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15176000" />
+    <option name="totallyTimeSpent" value="21065000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25302014" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="1" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.25302014" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -141,7 +162,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="CMake" order="11" />
@@ -160,8 +181,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
+        <state relative-caret-position="290">
+          <caret line="22" column="40" lean-forward="true" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="63" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
