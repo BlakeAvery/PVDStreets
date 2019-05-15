@@ -7,6 +7,7 @@ typedef struct car_t { //defines the structure of a node in the list
     char turn_dir; //0 for straight, 1 for left, 2 for right. Determined at end of queue.
     long time_in_system; //increments on engine loop. Counts how long car is in simulation.
     int street_tracker[20];
+    struct street_t *cur_street;
     struct car_t *next;
 }car_t;
 
@@ -33,24 +34,47 @@ int main() {
     pine4.street_right = NULL;
     pine4.street_left = NULL;
 
-    street_t pine2;
-    strcpy(pine2.name, "Pine/Richmond");
+    street_t weybosset10;
+    strcpy(weybosset10.name, "Weybosset exit left");
+    weybosset10.street_left = NULL;
+    weybosset10.street_right = NULL;
+    weybosset10.street_str = NULL;
 
+    street_t weybosset5;
+    strcpy(weybosset5.name, "Weybosset exit right");
+    weybosset5.street_str = NULL;
+    weybosset5.street_left = NULL;
+    weybosset5.street_right = NULL;
 
-    street_t empire2;
-    strcpy(empire2.name, "Empire north");
+    street_t dorrance3;
+    strcpy(dorrance3.name, "Dorrance Exit Bottom");
+    dorrance3.street_str = NULL;
+    dorrance3.street_left = NULL;
+    dorrance3.street_right = NULL;
 
-    street_t chestnut1;
-    strcpy(chestnut1.name, "Chestnut st");
+    street_t dorrance2;
+    strcpy(dorrance2.name, "Dorrance/Pine");
 
-    street_t page1;
+    street_t westminister2;
+    strcpy(westminister2.name, "Westminister/Dorrance");
+
+    street_t dorrance1;
+    strcpy(dorrance1.name, "Dorrance/Weybosset north");
+    dorrance1.street_str = NULL;
+    dorrance1.street_left = &westminister2;
+    dorrance1.street_right = NULL;
+
+    street_t weybosset9;
+    strcpy(weybosset9.name, "Weybosset/Dorrance left");
+    weybosset9.street_str = &weybosset5;
+    weybosset9.street_left = &dorrance1;
+    weybosset9.street_right = &dorrance2;
+
+    street_t page1, pine2;
     strcpy(page1.name, "Page st");
     page1.street_str = NULL;
     page1.street_left = NULL;
     page1.street_right = &pine2;
-
-    street_t weybosset9;
-    strcpy(weybosset9.name, "Weybosset/Dorrance left");
 
     street_t weybosset3;
     strcpy(weybosset3.name, "Weybosset/Matthewson/Page left");
@@ -58,26 +82,93 @@ int main() {
     weybosset3.street_left = &page1;
     weybosset3.street_right = NULL;
 
+    street_t richmond1, pine3;
+    strcpy(richmond1.name, "Richmond st");
+    richmond1.street_str = NULL;
+    richmond1.street_left = &weybossetnum;
+    richmond1.street_right = &weybosset3;
+
+    strcpy(pine3.name, "Pine/Chestnut");
+    pine3.street_str = &pine4;
+    pine3.street_left = NULL;
+    pine3.street_right = NULL;
+
+    //definitions for pine2, variable declared with page1
+    strcpy(pine2.name, "Pine/Richmond");
+    pine2.street_str = &pine3;
+    pine2.street_left = NULL;
+    pine2.street_right = &richmond1;
+
+    street_t weybosset8;
+    strcpy(weybosset8.name, "Weybosset/Matthewson/Page right");
+
+    street_t weybosset4;
+    strcpy(weybosset4.name, "Weybosset/Dorrance right");
+    weybosset4.street_str = &weybosset8;
+    weybosset4.street_left = &page1;
+    weybosset4.street_right = NULL;
+
+    street_t dorrance5;
+    strcpy(dorrance5.name, "Dorrance/Weybosset south");
+    dorrance5.street_str = &dorrance2;
+    dorrance5.street_left = &weybosset5;
+    dorrance5.street_right = &weybosset4;
+
+    street_t dorrance4;
+    strcpy(dorrance4.name, "Dorrance entry Botttom/Pine");
+    dorrance4.street_str = &dorrance1;
+    dorrance4.street_right = &weybosset5;
+    dorrance4.street_left = &weybosset4;
+
+
+
+    street_t pine1;
+    strcpy(pine1.name, "Pine Right/page");
+    pine1.street_str = &pine2;
+    pine1.street_right = &dorrance4;
+    pine1.street_left = &dorrance3;
+
+    street_t westminister4;
+    strcpy(westminister4.name, "Westminister exit left");
+    westminister4.street_str = NULL;
+    westminister4.street_left = NULL;
+    westminister4.street_right = NULL;
+
+    street_t chestnut1;
+    strcpy(chestnut1.name, "Chestnut st");
+    chestnut1.street_str = NULL;
+    chestnut1.street_left = NULL;
+    chestnut1.street_right = &pine4;
+
     street_t weybosset2;
-    strcpy(weybosset2.name, "Weybosset/Richmond");
+    strcpy(weybosset2.name, "Weybosset/Richmond left");
     weybosset2.street_str = &weybosset3;
     weybosset2.street_left = NULL;
     weybosset2.street_right = NULL;
+
+    street_t empire1;
+    strcpy(empire1.name, "Empire south");
+    empire1.street_str = &chestnut1;
+    empire1.street_right = &weybosset10;
+    empire1.street_left =  &weybosset2;
+
+    street_t westminister1;
+    strcpy(westminister1.name, "Westminister/Matthewson");
+    westminister1.street_str = &westminister4;
+    westminister1.street_right = NULL;
+    westminister1.street_left = &empire1;
+
+    street_t empire2;
+    strcpy(empire2.name, "Empire north");
+    empire2.street_str = NULL;
+    empire2.street_left = &westminister4;
+    empire2.street_right = NULL;
 
     street_t weybosset1;
     strcpy(weybosset1.name, "Weybosset entry left");
     weybosset1.street_right = &chestnut1;
     weybosset1.street_str = &weybosset2;
     weybosset1.street_left = &empire2;
-
-
-    street_t weybosset4;
-    strcpy(weybosset4.name, "Weybosset/Dorrance");
-
-
-    street_t weybosset5;
-    strcpy(weybosset5.name, "Weybosset exit right");
-
 
     street_t weybosset6;
     strcpy(weybosset6.name, "Weybosset entry right");
@@ -86,89 +177,20 @@ int main() {
     street_t weybosset7;
     strcpy(weybosset7.name, "Weybosset/Richmond");
 
-
-    street_t weybosset8;
-    strcpy(weybosset8.name, "Weybosset/Matthewson/Page right");
-
-
-    street_t weybosset10;
-    strcpy(weybosset10.name, "Weybosset exit left");
-
-
-    street_t westminister1;
-    strcpy(westminister1.name, "Westminister entry left");
-
-
-    street_t westminister2;
-    strcpy(westminister2.name, "Westminister/Matthewson");
-
-
     street_t westminister3;
-    strcpy(westminister3.name, "Westminister/Dorrance");
+    strcpy(westminister3.name, "Westminister entry right");
+    westminister3.street_str = &westminister2;
+    westminister3.street_left = &dorrance5;
+    westminister3.street_right = NULL;
 
-
-    street_t westminister4;
-    strcpy(westminister4.name, "Westminister exit right");
-
-
-    street_t westminister5;
-    strcpy(westminister5.name, "Westminister entry right");
-
-
-    street_t westminister6;
-    strcpy(westminister6.name, "Westminister/Matthewson");
-
-
-    street_t westminister7;
-    strcpy(westminister7.name, "Westminister/Dorrance");
-
-
-    street_t westminister8;
-    strcpy(westminister8.name, "Westminister exit left");
-
-
-    street_t dorrance1;
-    strcpy(dorrance1.name, "Dorrance Top/Weybosset");
-
-
-    street_t dorrance2;
-    strcpy(dorrance2.name, "Dorrance/Pine");
-
-
-    street_t dorrance3;
-    strcpy(dorrance3.name, "Dorrance Exit Bottom");
-
-
-    street_t dorrance4;
-    strcpy(dorrance4.name, "Dorrance entry Botttom/Pine");
-
-
-    street_t dorrance5;
-    strcpy(dorrance5.name, "Dorrance/Weybosset");
-
-
-    street_t dorrance6;
-    strcpy(dorrance6.name, "Dorrance/Westminister");
-
-
-    street_t pine1;
-    strcpy(pine1.name, "Pine Right/page");
-
-
-    street_t pine3;
-    strcpy(pine3.name, "Pine/Chestnut");
-
-    street_t richmond1;
-    strcpy(richmond1.name, "Richmond st");
-
-
+    /*street_t dorrance6;
+    strcpy(dorrance6.name, "Dorrance/Westminister");*/
 
     street_t matthewson1;
     strcpy(matthewson1.name, "Matthewson st");
-
-
-    street_t empire1;
-    strcpy(empire1.name, "Empire south");
+    matthewson1.street_str = NULL;
+    matthewson1.street_left = &westminister1;
+    matthewson1.street_right = NULL;
 
     return 0;
 }
