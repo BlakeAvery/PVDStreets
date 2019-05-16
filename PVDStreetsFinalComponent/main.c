@@ -16,6 +16,7 @@ typedef struct street_t { //defines structure of the street_t header
     car_t *fptr;
     char name[30]; //Street name
     int count; //Represents max amount of cars the street_t can hold
+    int capacity; //Represents amount of cars currently in queue
     int traffic_light_status; //Status of traffic light at end of this queue
     int timer; //Amount of loops that each each street has gone through, resets when new car is added.
     int arrival_rate; //Is only defined for entry points, amount of engine runs that it takes to have one car enter. If not entry, 0.
@@ -27,21 +28,29 @@ typedef struct street_t { //defines structure of the street_t header
     car_t *rptr;
 }street_t;
 
-int new_car();
+car_t new_car(street_t *entrance);
 car_t exit_street();
+int enter_street(int timer);
+int transfer_street(int timer);
+int time_print(int timer);
+int arr_exit_print();
+int car_info_print();
+int rng_gen(int range);
+int is_list_empty(street_t *street);
+
+//First declare street variables
+street_t pine1,
+        pine2, pine3, pine4;
+street_t page1, richmond1, chestnut1;
+street_t weybosset1, weybosset2, weybosset3, weybosset4, weybosset5,
+        weybosset6, weybosset7, weybosset8, weybosset9, weybosset10;
+street_t dorrance1, dorrance2, dorrance3, dorrance4, dorrance5;
+street_t empire1, empire2;
+street_t westminister1, westminister2, westminister3, westminister4;
 
 int main() {
     srand(time(NULL)); //init rng
-
-    //First declare street variables
-    street_t pine1,
-    pine2, pine3, pine4;
-    street_t page1, richmond1, chestnut1;
-    street_t weybosset1, weybosset2, weybosset3, weybosset4, weybosset5,
-    weybosset6, weybosset7, weybosset8, weybosset9, weybosset10;
-    street_t dorrance1, dorrance2, dorrance3, dorrance4, dorrance5;
-    street_t empire1, empire2;
-    street_t westminister1, westminister2, westminister3, westminister4;
+    int timer = 0; //amount of loops program has been through in total
 
     //then, street metadata
     strcpy(pine4.name, "Pine exit left");
@@ -112,13 +121,14 @@ int main() {
     dorrance4.street_left = &weybosset4;
     dorrance4.count = 22;
     dorrance4.arrival_rate = 5;
+    dorrance4.timer = 0;
 
     strcpy(pine1.name, "Pine Right/page");
     pine1.street_str = &pine2;
     pine1.street_right = &dorrance4;
     pine1.street_left = &dorrance3;
     pine1.count = 22;
-    pine1.arrival_rate = 0;
+    pine1.arrival_rate = 4;
 
     strcpy(dorrance2.name, "Dorrance/Pine");
     dorrance2.street_str = NULL;
@@ -232,6 +242,7 @@ int main() {
     weybosset1.street_left = &empire2;
     weybosset1.count = 2;
     weybosset1.arrival_rate = 4;
+    weybosset1.timer = 0;
 
     strcpy(weybosset6.name, "Weybosset entry right");
     weybosset6.street_str = &weybosset4;
@@ -239,6 +250,7 @@ int main() {
     weybosset6.street_right = &dorrance1;
     weybosset6.count = 2;
     weybosset6.arrival_rate = 5;
+    weybosset6.timer = 0;
 
     strcpy(westminister3.name, "Westminister entry right");
     westminister3.street_str = &westminister2;
@@ -246,6 +258,94 @@ int main() {
     westminister3.street_right = NULL;
     westminister3.count = 2;
     westminister3.arrival_rate = 6;
+    westminister3.timer = 0;
+
+    while(1) { //timer loop
+        //arr_exit_print();
+        car_info_print();
+        if(timer % 2 == 0) {
+            enter_street(timer);
+            exit_street(timer);
+            transfer_street(timer);
+        }
+        timer++;
+        printf("%d\n", timer);
+        _sleep(1000);
+    }
 
     return 0;
+}
+
+int enter_street(int timer) {
+    //we first increment loop timer for each entry queue
+    weybosset1.timer++;
+    weybosset6.timer++;
+    westminister3.timer++;
+    dorrance4.timer++;
+    pine1.timer++;
+
+    //now we check to see if it's time to spawn a new car into the system, if it is we call new_car to place new node into street
+    if(weybosset1.timer == (timer / 2)) {
+        weybosset1.timer = 0;
+        new_car(&weybosset1);
+    }
+    if(weybosset6.timer == (timer / 2)) {
+        weybosset6.timer = 0;
+        new_car(&weybosset6);
+    }
+    if(westminister3.timer == (timer / 2)) {
+        westminister3.timer = 0;
+        new_car(&westminister3);
+    }
+    if(dorrance4.timer == (timer / 2)) {
+        dorrance4.timer = 0;
+        new_car(&dorrance4);
+    }
+    if(pine1.timer == (timer / 2)) {
+        pine1.timer = 0;
+        new_car(&pine1);
+    }
+    return 0;
+}
+
+car_t exit_street() {
+    street_t* exits[5] = {&westminister4, &dorrance3, &weybosset5, &weybosset10, &pine4};
+    for(int x = 0; x < 5; x++) {
+        if(exits[x]->fptr == NULL && exits[x]->rptr == NULL) {
+            printf("This queue is empty. Try adding someone to it.\n");
+            car_t *hi = (car_t)malloc(sizeof(car_t)); //dummy value returned if there is nothing to dequeue
+            return *hi;
+        } else if (exits[x]->fptr == exits[x]->rptr) {
+            car_t *ptr = exits[x]->fptr;
+            exits[x]->fptr = NULL;
+            exits[x]->rptr = NULL;
+            exits[x]->count--;
+            return *ptr;
+        } else {
+            car_t *ptr = exits[x]->fptr;
+            exits[x]->fptr = ptr->next;
+            exits[x]->count--;
+            return *ptr;
+        }
+    }
+}
+
+car_t new_car(street_t *entrance) {
+    long id = rand();
+    car_t *new_ptr = (car_t*)malloc(sizeof(car_t));
+    new_ptr->id = id;
+    new_ptr->cur_street = entrance;
+    new_ptr->next = NULL;
+    if(is_list_empty(entrance)) { //List is empty, point fptr in header to new node.
+        entrance->rptr = new_ptr;
+        entrance->fptr = new_ptr;
+        entrance->capacity++;
+    } else if(entrance->count < entrance->capacity) { //we place the node at end of list
+        car_t *cur_ptr = entrance->rptr;
+        cur_ptr->next = new_ptr;
+        entrance->rptr = new_ptr;
+        entrance->capacity++;
+    } else {
+        //we can't add, we do nothing
+    }
 }

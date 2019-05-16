@@ -117,6 +117,7 @@ int pcars(st_s street[],char system[]){
 	return 0;
 }
 
+//print out progress bar for each street queue
 int pbar(st_s street[]){
 	int i;
 	int N=2;//#of streets
@@ -209,6 +210,7 @@ car_s* deque(st_s street[],int st){
 	return dptr;
 }
 
+//Move between queues
 int trans(st_s street[],int from,int to){
 	car_s *eptr;
 	eptr=deque(street,from);//dequeue the first car from street1
@@ -241,7 +243,7 @@ int main(){
 	char system[]="On streets";
 	pcars(Street,system);//print all cars on street2
 	pbar(Street);
-	time += 2;
+	time++;
 	trans(Street,1,2);
 	//trans(Street,2,1);
 	sleep(2);//sleep 1sec
