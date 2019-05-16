@@ -3,17 +3,20 @@
 #include<cstring>
 #include <unistd.h>
 
+/*
+ * Changes made - Refactored code a little for aesthetic purposes for easier integration
+ * into FinalComponent.
+ */
+
 //define structure car_s
-typedef struct car_s
-{	
+typedef struct car_s {
 	int cnum;//4Bytes
 	int csize;//4Bytes
 	struct car_s *next_s=NULL;//4 Bytes
 }car_s;//8 Bytes
 
 //define structure st_s
-typedef struct st_s
-{
+typedef struct st_s {
 	int cars;//4 Bytes
 	int max;
 	int light;//4 Bytes
@@ -26,7 +29,7 @@ typedef struct st_s
 }st_s;
 
 //print current time
-ptime(int time){
+int ptime(int time){
 	//system("cls");//clean the screen
 	int min;//define time units
 	int hour;
@@ -44,6 +47,7 @@ ptime(int time){
 	return 0;
 }
 
+//Arrival/exit rate generator
 int prate(int time,int arrival,int exit){
 	
 	if(time==0){
@@ -64,10 +68,11 @@ int prate(int time,int arrival,int exit){
 	return 0;
 }
 
-
-pcars(st_s street[]){
+//prints out car information
+int pcars(st_s street[]){
 	int i;
 	int N=2;//#of streets
+
 	for(i=1;i<=N;i++){
 		printf("\n%s\n",street[i].name);
 		//define new, current, and previous pointers.
@@ -77,18 +82,18 @@ pcars(st_s street[]){
 		//set pointer at the header
 		cptr=street[i].fptr;
 		pptr=street[i].fptr;
+
 		while(cptr!=NULL){//scan all nodes until reach the final node and print each node
-				
 			printf("←%d",cptr->cnum);//print car number
 			pptr=cptr;//the previous pointer keep the address pointed by the current pointer 
 			cptr=cptr->next_s;//the current pointer points the next node
-			}
+		}
 	}
 	return 0;
 }
 
-
-pcars(st_s street[],char system[]){
+//also prints out car info
+int pcars(st_s street[],char system[]){
 	int i;
 	int N=2;//#of streets
 	printf("\n\n%s\n",system);
@@ -127,7 +132,8 @@ int pbar(st_s street[]){
 	return 0;
 }
 
-inist(st_s street[],int st){
+//set up street queue
+int inist(st_s street[],int st){
 	
 	street[st].cars=0;
 	int cnum;
@@ -203,7 +209,7 @@ car_s* deque(st_s street[],int st){
 	return dptr;
 }
 
-trans(st_s street[],int from,int to){
+int trans(st_s street[],int from,int to){
 	car_s *eptr;
 	eptr=deque(street,from);//dequeue the first car from street1
 	enque(street,to,eptr);//enqueue the dequeued car 8
@@ -235,10 +241,10 @@ int main(){
 	char system[]="On streets";
 	pcars(Street,system);//print all cars on street2
 	pbar(Street);
-	time++;
+	time += 2;
 	trans(Street,1,2);
 	//trans(Street,2,1);
-	sleep(1);//sleep 1sec
+	sleep(2);//sleep 1sec
 	}
 	
 	return 0;

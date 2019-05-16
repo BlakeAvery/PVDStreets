@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 typedef struct car_t { //defines the structure of a node in the list
     long id; //identification number of car
@@ -16,7 +17,7 @@ typedef struct street_t { //defines structure of the street_t header
     char name[30]; //Street name
     int count; //Represents max amount of cars the street_t can hold
     int traffic_light_status; //Status of traffic light at end of this queue
-    int timer;
+    int timer; //Amount of loops that each each street has gone through, resets when new car is added.
     int arrival_rate; //Is only defined for entry points, amount of engine runs that it takes to have one car enter. If not entry, 0.
     int exit_rate;
     struct street_t *street_str; //Pointer to next street_t queue that this street_t leads to straight
@@ -26,7 +27,12 @@ typedef struct street_t { //defines structure of the street_t header
     car_t *rptr;
 }street_t;
 
+int new_car();
+car_t exit_street();
+
 int main() {
+    srand(time(NULL)); //init rng
+
     //First declare street variables
     street_t pine1,
     pine2, pine3, pine4;
